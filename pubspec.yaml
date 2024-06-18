@@ -7,9 +7,16 @@ environment:
   sdk: '>=3.4.1 <4.0.0'
 
 dependencies:
+  dio: ^5.4.3+1
   flutter:
     sdk: flutter
+  flutter_riverpod: ^2.5.1
   group_button: ^5.3.4
+  http: ^1.2.1
+  networking: ^0.0.1
+  path: ^1.9.0
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:

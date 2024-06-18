@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:networking/data/workout.dart';
+import "package:networking/data/workout.dart";
 
 class WorkoutProvider extends ChangeNotifier {
   int _number = 0;
@@ -9,7 +9,7 @@ class WorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Workout> _workouts = [];
+  final List<Workout> _workouts = [];
   List<Workout> get workouts => _workouts;
   void addWorkout(Workout workout) {
     _workouts.add(workout);

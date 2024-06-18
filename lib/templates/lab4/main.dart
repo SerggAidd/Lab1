@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Tasks'),
@@ -31,7 +31,6 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () async {
-                // TODO
                 // Exercise 1 - Perform an async operation using async/await
                 String result = await fetchData();
                 print(result);
@@ -41,29 +40,47 @@ class MyHomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Exercise 2 - Use Provider for state management
-                // Increment the counter
+                ref.read(counterProvider.notifier).state++;
               },
               child: Text('Provider Task'),
             ),
             ElevatedButton(
               onPressed: () {
-                // TODO
                 // Exercise 3 - Use Riverpod for state management
-                // Increment the counter
+                ref.read(counterStateNotifierProvider.notifier).increment();
               },
               child: Text('Riverpod Task'),
             ),
             ElevatedButton(
               onPressed: () async {
-                // TODO 
                 // Exercise 4 - Make an HTTP request using the HTTP package
+                final Uri url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+                final response = await http.get(url);
+                if (response.statusCode == 200) {
+                  print(response.body);
+                } else {
+                  print('Failed to load data');
+                }
               },
               child: Text('HTTP Task'),
             ),
             ElevatedButton(
               onPressed: () async {
-                // TODO
                 // Exercise 5 - Make an HTTP request using Dio and show it in App Screen
+                try {
+                  Response response = await Dio().get('https://jsonplaceholder.typicode.com/posts/1');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(response.data.toString()),
+                    ),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Failed to load data'),
+                    ),
+                  );
+                }
               },
               child: Text('Dio Task'),
             ),
@@ -75,15 +92,23 @@ class MyHomePage extends StatelessWidget {
 }
 
 Future<String> fetchData() async {
-  // TODO get json from url and show as text
-  // 'https://jsonplaceholder.typicode.com/posts/1'
-
-  return 'data';
+  final Uri url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+  final response = await http.get(url);
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('Failed to load data');
+  }
 }
 
 final counterProvider = StateProvider<int>((ref) => 0);
 
-// TODO create a state notifier
-// final 
+final counterStateNotifierProvider = StateNotifierProvider<CounterStateNotifier, int>((ref) => CounterStateNotifier());
 
-// TODO create class for state notifier
+class CounterStateNotifier extends StateNotifier<int> {
+  CounterStateNotifier() : super(0);
+
+  void increment() {
+    state++;
+  }
+}

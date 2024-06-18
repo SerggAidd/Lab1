@@ -6,11 +6,7 @@ final localStorageServiceProvider = Provider<LocalStorageService>((ref) {
 });
 
 final waterIntakeProvider =
-<<<<<<< HEAD
 StateNotifierProvider<WaterIntakeNotifier, double>((ref) {
-=======
-    StateNotifierProvider<WaterIntakeNotifier, double>((ref) {
->>>>>>> 46f1595df9dae36d9ce831b8c6a0f6809434b3cf
   final localStorageService = ref.watch(localStorageServiceProvider);
   return WaterIntakeNotifier(localStorageService);
 });
@@ -23,7 +19,7 @@ class WaterIntakeNotifier extends StateNotifier<double> {
   }
 
   void _loadWaterIntake() async {
-<<<<<<< HEAD
+
     state = await _localStorageService.getWaterIntake();
   }
 
@@ -43,18 +39,5 @@ class WaterIntakeNotifier extends StateNotifier<double> {
 
   void _showDoneMessage() {
 
-=======
-    // TODO - Load the water intake from _localStorageService using await
-    // state =
-  }
-
-  void increment(double amount) async {
-    state += amount;
-    // TODO - Save the water intake into _localStorageService using saveWaterIntake
-  }
-
-  void reset() async {
-    // TODO - reset state and save it into _localStorageService using saveWaterIntake
->>>>>>> 46f1595df9dae36d9ce831b8c6a0f6809434b3cf
   }
 }

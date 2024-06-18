@@ -24,9 +24,9 @@ class ExampleApp extends StatelessWidget {
       title: 'Workout App',
       initialRoute: '/',
       routes: {
-        '/': (context) => MainPage(),
-        '/workout': (context) => WorkoutPage(),
-        '/finish': (context) => FinishPage(),
+        '/': (context) => const MainPage(),
+        '/workout': (context) => const WorkoutPage(),
+        '/finish': (context) => const FinishPage(),
       },
     );
   }

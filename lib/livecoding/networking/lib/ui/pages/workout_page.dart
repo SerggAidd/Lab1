@@ -25,8 +25,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
   void startTimer(int numberCycles, int numberInCycle) {
     time_left = numberInCycle;
     final cycles = numberCycles;
-    const oneSec = const Duration(seconds: 1);
-    _timer = new Timer.periodic(
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
       oneSec,
       (Timer timer) {
         if (time_left == 0) {
@@ -61,7 +61,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
               start = DateTime.now();
               startTimer(number_cycles, number);
             },
-            child: Text('Start')),
+            child: const Text('Start')),
         Text('Time: $time_left '),
         Text('Cycles: $number_cycles'),
         ElevatedButton(
@@ -78,7 +78,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             ));
             Navigator.of(context).pushNamed('/finish');
           },
-          child: Text('Finish'),
+          child: const Text('Finish'),
         )
       ]),
     );
