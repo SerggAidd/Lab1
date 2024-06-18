@@ -8,6 +8,7 @@ class HydrationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+<<<<<<< HEAD
     final waterIntake = ref.watch(waterIntakeProvider);
 
     return Scaffold(
@@ -22,10 +23,17 @@ class HydrationScreen extends ConsumerWidget {
           ),
         ],
       ),
+=======
+    // TODO - Add ref.watch and use provider to get the water intake
+    // final waterIntake =
+    return Scaffold(
+      // TODO add AppBar with Icon to reset the water intake as actions parameter of AppBar
+>>>>>>> 46f1595df9dae36d9ce831b8c6a0f6809434b3cf
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+<<<<<<< HEAD
             Text(
               'Water Intake: ${waterIntake.toStringAsFixed(2)} L',
               style: const TextStyle(fontSize: 24),
@@ -51,6 +59,15 @@ class HydrationScreen extends ConsumerWidget {
         tooltip: 'Add Water',
         child: const Icon(Icons.add),
       ),
+=======
+            // TODO - Add text to display the water intake
+            // TODO add HydrationWidget to display the water intake and put waterIntake into it
+            // Add more UI components if necessary
+          ],
+        ),
+      ),
+      // TODO - Add floating action button to increment the water intake using ref.read(waterIntakeProvider.notifier).increment(x)
+>>>>>>> 46f1595df9dae36d9ce831b8c6a0f6809434b3cf
     );
   }
 }
